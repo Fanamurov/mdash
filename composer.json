@@ -1,11 +1,11 @@
 {
-    "name": "kix/mdash",
-    "description": "E. Muravjov's typographer, Composer version",
+    "name": "fanamurov/mdash",
+    "description": "E. Muravjov's typographer, Composer version, php 7.2, larrockCMS",
     "license": "MIT",
     "authors": [
         {
-            "name": "Stepan Anchugov",
-            "email": "kixxx1@gmail.com"
+            "name": "Alexandr Fanamurov",
+            "email": "fanamurov@ya.ru"
         }
     ],
     "autoload": {
@@ -15,7 +15,7 @@
         }
     },
     "require-dev": {
-        "phpunit/phpunit": "4.0.x"
+        "phpunit/phpunit": "^6.2|^7.0"
     },
     "minimum-stability": "dev",
     "keywords": [

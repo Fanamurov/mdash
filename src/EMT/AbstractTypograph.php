@@ -197,7 +197,10 @@ class AbstractTypograph
         if (count($this->_safe_blocks)) {
             $safeType = true === $way ? "Util::encrypt_tag(\$m[2])" : "stripslashes(\\Emt\\Util::decrypt_tag(\$m[2]))";
             foreach ($this->_safe_blocks as $block) {
-                $text = preg_replace_callback("/({$block['open']})(.+?)({$block['close']})/s",   create_function('$m','return $m[1].'.$safeType . '.$m[3];')   , $text);
+                $text = preg_replace_callback("/({$block['open']})(.+?)({$block['close']})/s",
+                    function ($m) use ($safeType){
+                        return $m[1] . $safeType . $m[3];
+                    }   , $text);
             }
         }
 
@@ -310,7 +313,7 @@ class AbstractTypograph
     {
         if (isset($this->tret_objects[$name])) {
             return $this->tret_objects[$name];
-        } 
+        }
         foreach ($this->trets as $tret) {
             if ($tret == $name) {
                 $this->_init();

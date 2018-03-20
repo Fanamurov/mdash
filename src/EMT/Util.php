@@ -116,11 +116,11 @@ class Util
     public static function clear_special_chars($text, $mode = null)
     {
         if (is_string($mode)) $mode = array($mode);
-        if (is_null($mode)) $mode = array('utf8', 'html');
+        if (null === $mode) $mode = array('utf8', 'html');
         if (!is_array($mode)) return false;
         $moder = array();
         foreach ($mode as $mod) if (in_array($mod, array('utf8', 'html'))) $moder[] = $mod;
-        if (count($moder) == 0) return false;
+        if (count($moder) === 0) return false;
 
         foreach (self::$_charsTable as $char => $vals) {
             foreach ($mode as $type) {
@@ -130,7 +130,7 @@ class Util
                             $v = self::_getUnicodeChar($v);
                         }
                         if ('html' === $type) {
-                            if (preg_match("/<[a-z]+>/i", $v)) {
+                            if (preg_match('/<[a-z]+>/i', $v)) {
                                 $v = self::safe_tag_chars($v, true);
                             }
                         }
@@ -170,7 +170,7 @@ class Util
                 $ignore = implode('', $tags);
             }
         }
-        $text = preg_replace(array('/\<br\s*\/?>/i', '/\<\/p\>\s*\<p\>/'), array("\n", "\n\n"), $text);
+        $text = preg_replace(array('/\<br\s*\/?>/i', '/\<\/p\>\s*\<p\>/'), array('\n', '\n\n'), $text);
         $text = strip_tags($text, $ignore);
 
         return $text;
@@ -188,10 +188,17 @@ class Util
      */
     public static function safe_tag_chars($text, $way)
     {
-        if ($way)
-            $text = preg_replace_callback('/(\<\/?)(.+?)(\>)/s', create_function('$m', 'return $m[1].( substr(trim($m[2]), 0, 1) === "a" ? "%%___"  : ""  ) . \EMT\Util::encrypt_tag(trim($m[2]))  . $m[3];'), $text);
-        else
-            $text = preg_replace_callback('/(\<\/?)(.+?)(\>)/s', create_function('$m', 'return $m[1].( substr(trim($m[2]), 0, 3) === "%%___" ? \EMT\Util::decrypt_tag(substr(trim($m[2]), 4)) : \EMT\Util::decrypt_tag(trim($m[2])) ) . $m[3];'), $text);
+        if ($way) {
+            $text = preg_replace_callback('/(\<\/?)(.+?)(\>)/s',
+                function ($m) {
+                    return $m[1] . (0 === strpos(trim($m[2]), 'a') ? '%%___' : '') . \EMT\Util::encrypt_tag(trim($m[2])) . $m[3];
+                }, $text);
+        } else {
+            $text = preg_replace_callback('/(\<\/?)(.+?)(\>)/s',
+                function ($m) {
+                    return $m[1] . (0 === strpos(trim($m[2]), '%%___') ? \EMT\Util::decrypt_tag(substr(trim($m[2]), 4)) : \EMT\Util::decrypt_tag(trim($m[2]))) . $m[3];
+                }, $text);
+        }
 
         return $text;
     }
@@ -204,7 +211,10 @@ class Util
      */
     public static function decode_internal_blocks($text)
     {
-        $text = preg_replace_callback('/' . \EMT\Util::INTERNAL_BLOCK_OPEN . '([a-zA-Z0-9\/=]+?)' . \EMT\Util::INTERNAL_BLOCK_CLOSE . '/s', create_function('$m', 'return \EMT\Util::decrypt_tag($m[1]);'), $text);
+        $text = preg_replace_callback('/' . \EMT\Util::INTERNAL_BLOCK_OPEN . '([a-zA-Z0-9\/=]+?)' . \EMT\Util::INTERNAL_BLOCK_CLOSE . '/s',
+            function ($m) {
+                return \EMT\Util::decrypt_tag($m[1]);
+            }, $text);
 
         return $text;
     }
@@ -238,14 +248,14 @@ class Util
             }
         }
 
-        $classname = "";
+        $classname = '';
         if (count($attribute)) {
 
             if ($layout & self::LAYOUT_STYLE) {
                 if (isset($attribute['__style']) && $attribute['__style']) {
                     if (isset($attribute['style']) && $attribute['style']) {
                         $st = trim($attribute['style']);
-                        if (mb_substr($st, -1) != ";") $st .= ";";
+                        if (mb_substr($st, -1) != ';') $st .= ';';
                         $st .= $attribute['__style'];
                         $attribute['style'] = $st;
                     } else {
@@ -282,7 +292,7 @@ class Util
      */
     public static function encrypt_tag($text)
     {
-        return base64_encode($text) . "=";
+        return base64_encode($text) . '=';
     }
 
     /**
@@ -637,14 +647,17 @@ class Util
     public static function convert_html_entities_to_unicode(&$text)
     {
         $text = preg_replace_callback("/\&#([0-9]+)\;/",
-            create_function('$m', 'return \EMT\Util::_getUnicodeChar(intval($m[1]));')
-            , $text);
+            function ($m) {
+                return \EMT\Util::_getUnicodeChar((int)$m[1]);
+            }, $text);
         $text = preg_replace_callback("/\&#x([0-9A-F]+)\;/",
-            create_function('$m', 'return \EMT\Util::_getUnicodeChar(hexdec($m[1]));')
-            , $text);
+            function ($m) {
+                return \EMT\Util::_getUnicodeChar(hexdec($m[1]));
+            }, $text);
         $text = preg_replace_callback("/\&([a-zA-Z0-9]+)\;/",
-            create_function('$m', '$r = \EMT\Util::html_char_entity_to_unicode($m[1]); return $r ? $r : $m[0];')
-            , $text);
+            function ($m) {
+                $r = \EMT\Util::html_char_entity_to_unicode($m[1]); return $r ? $r : $m[0];
+            }, $text);
     }
 
     /**
@@ -652,7 +665,7 @@ class Util
      */
     public static function rstrpos($haystack, $needle, $offset = 0)
     {
-        if (trim($haystack) != "" && trim($needle) != "" && $offset <= mb_strlen($haystack)) {
+        if (trim($haystack) !== '' && trim($needle) !== '' && $offset <= mb_strlen($haystack)) {
             $last_pos = $offset;
             $found = false;
             while (($curr_pos = mb_strpos($haystack, $needle, $last_pos)) !== false) {
@@ -661,12 +674,10 @@ class Util
             }
             if ($found) {
                 return $last_pos - 1;
-            } else {
-                return false;
             }
-        } else {
             return false;
         }
+        return false;
     }
 
     public static function ifop($cond, $true, $false)

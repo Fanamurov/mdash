@@ -1,4 +1,5 @@
 <?php
+
 namespace EMT\Tret;
 
 use EMT\Util;
@@ -6,89 +7,99 @@ use EMT\Util;
 class Quote extends AbstractTret
 {
     /**
-     * Базовые параметры тофа
+     * Базовые параметры тофа.
      *
      * @var array
      */
-    public $title = "Кавычки";
+    public $title = 'Кавычки';
 
-    public $rules = array(
-        'quotes_outside_a' => array(
+    public $rules = [
+        'quotes_outside_a' => [
             'description' => 'Кавычки вне тэга <a>',
             'pattern' => '/(\<%%\_\_[^\>]+\>)\"(.+?)\"(\<\/%%\_\_[^\>]+\>)/s',
-            'replacement' => '"\1\2\3"'
-        ),
+            'replacement' => '"\1\2\3"',
+        ],
 
-        'open_quote' => array(
+        'open_quote' => [
             'description' => 'Открывающая кавычка',
             'pattern' => '/(^|\(|\s|\>|-)(\"|\\\")(\S+)/iue',
-            'replacement' => '$m[1] . \EMT\Tret\AbstractTret::QUOTE_FIRS_OPEN . $m[3]'
-        ),
-        'close_quote' => array(
+            'replacement' => '$m[1] . \EMT\Tret\AbstractTret::QUOTE_FIRS_OPEN . $m[3]',
+        ],
+        'close_quote' => [
             'description' => 'Закрывающая кавычка',
             'pattern' => '/([a-zа-яё0-9]|\.|\&hellip\;|\!|\?|\>|\)|\:)((\"|\\\")+)(\.|\&hellip\;|\;|\:|\?|\!|\,|\s|\)|\<\/|$)/uie',
-            'replacement' => '$m[1] . str_repeat(\EMT\Tret\AbstractTret::QUOTE_FIRS_CLOSE, substr_count($m[2],"\"") ) . $m[4]'
-        ),
-        'close_quote_adv' => array(
+            'replacement' => '$m[1] . str_repeat(\EMT\Tret\AbstractTret::QUOTE_FIRS_CLOSE, substr_count($m[2],"\"") ) . $m[4]',
+        ],
+        'close_quote_adv' => [
             'description' => 'Закрывающая кавычка особые случаи',
-            'pattern' =>
-                array(
+            'pattern' => [
                     '/([a-zа-яё0-9]|\.|\&hellip\;|\!|\?|\>|\)|\:)((\"|\\\"|\&laquo\;)+)(\<[^\>]+\>)(\.|\&hellip\;|\;|\:|\?|\!|\,|\)|\<\/|$| )/uie',
                     '/([a-zа-яё0-9]|\.|\&hellip\;|\!|\?|\>|\)|\:)(\s+)((\"|\\\")+)(\s+)(\.|\&hellip\;|\;|\:|\?|\!|\,|\)|\<\/|$| )/uie',
                     '/\>(\&laquo\;)\.($|\s|\<)/ui',
                     '/\>(\&laquo\;),($|\s|\<|\S)/ui',
-                ),
-            'replacement' =>
-                array(
+                ],
+            'replacement' => [
                     '$m[1] . str_repeat(\EMT\Tret\AbstractTret::QUOTE_FIRS_CLOSE, substr_count($m[2],"\"")+substr_count($m[2],"&laquo;") ) . $m[4]. $m[5]',
                     '$m[1] .$m[2]. str_repeat(\EMT\Tret\AbstractTret::QUOTE_FIRS_CLOSE, substr_count($m[3],"\"")+substr_count($m[3],"&laquo;") ) . $m[5]. $m[6]',
                     '>&raquo;.\2',
                     '>&raquo;,\2',
-                ),
-        ),
-        'open_quote_adv' => array(
+                ],
+        ],
+        'open_quote_adv' => [
             'description' => 'Открывающая кавычка особые случаи',
             'pattern' => '/(^|\(|\s|\>)(\"|\\\")(\s)(\S+)/iue',
-            'replacement' => '$m[1] . \EMT\Tret\AbstractTret::QUOTE_FIRS_OPEN .$m[4]'
-        ),
-        'quotation' => array(
+            'replacement' => '$m[1] . \EMT\Tret\AbstractTret::QUOTE_FIRS_OPEN .$m[4]',
+        ],
+        'quotation' => [
             'description' => 'Внутренние кавычки-лапки и дюймы',
-            'function' => 'build_sub_quotations'
-        ),
-    );
+            'function' => 'build_sub_quotations',
+        ],
+    ];
 
     /**
      * @param string $text
      */
     protected function inject_in($pos, $text)
     {
-        for ($i = 0; $i < strlen($text); $i++) $this->_text[$pos + $i] = $text[$i];
+        for ($i = 0; $i < strlen($text); $i++) {
+            $this->_text[$pos + $i] = $text[$i];
+        }
     }
 
     protected function build_sub_quotations()
     {
         global $__ax, $__ay;
-        $okposstack = array('0');
+        $okposstack = ['0'];
         $okpos = 0;
         $level = 0;
         $off = 0;
         while (true) {
-            $p = Util::strpos_ex($this->_text, array("&laquo;", "&raquo;"), $off);
-            if ($p === false) break;
-            if ($p['str'] == "&laquo;") {
-                if ($level > 0) if (!$this->is_on('no_bdquotes')) $this->inject_in($p['pos'], self::QUOTE_CRAWSE_OPEN);
+            $p = Util::strpos_ex($this->_text, ['&laquo;', '&raquo;'], $off);
+            if ($p === false) {
+                break;
+            }
+            if ($p['str'] == '&laquo;') {
+                if ($level > 0) {
+                    if (! $this->is_on('no_bdquotes')) {
+                        $this->inject_in($p['pos'], self::QUOTE_CRAWSE_OPEN);
+                    }
+                }
                 $level++;
             }
-            if ($p['str'] == "&raquo;") {
+            if ($p['str'] == '&raquo;') {
                 $level--;
-                if ($level > 0) if (!$this->is_on('no_bdquotes')) $this->inject_in($p['pos'], self::QUOTE_CRAWSE_CLOSE);
+                if ($level > 0) {
+                    if (! $this->is_on('no_bdquotes')) {
+                        $this->inject_in($p['pos'], self::QUOTE_CRAWSE_CLOSE);
+                    }
+                }
             }
             $off = $p['pos'] + strlen($p['str']);
             if ($level == 0) {
                 $okpos = $off;
                 array_push($okposstack, $okpos);
             } elseif ($level < 0) { // уровень стал меньше нуля
-                if (!$this->is_on('no_inches')) {
+                if (! $this->is_on('no_inches')) {
                     do {
                         $lokpos = array_pop($okposstack);
                         $k = substr($this->_text, $lokpos, $off - $lokpos);
@@ -105,13 +116,12 @@ class Quote extends AbstractTret
                                 $k);
                             $amount = 1;
                         }
-
                     } while (($amount == 0) && count($okposstack));
 
                     // успешно сделали замену
                     if ($amount == 1) {
                         // заново просмотрим содержимое
-                        $this->_text = substr($this->_text, 0, $lokpos) . $k . substr($this->_text, $off);
+                        $this->_text = substr($this->_text, 0, $lokpos).$k.substr($this->_text, $off);
                         $off = $lokpos;
                         $level = 0;
                         continue;
@@ -121,14 +131,13 @@ class Quote extends AbstractTret
                     if ($amount == 0) {
                         // говорим, что всё в порядке
                         $level = 0;
-                        $this->_text = substr($this->_text, 0, $p['pos']) . '&quot;' . substr($this->_text, $off);
+                        $this->_text = substr($this->_text, 0, $p['pos']).'&quot;'.substr($this->_text, $off);
                         $off = $p['pos'] + strlen('&quot;');
-                        $okposstack = array($off);
+                        $okposstack = [$off];
                         continue;
                     }
                 }
             }
-
         }
         // не совпало количество, отменяем все подкавычки
         if ($level != 0) {
@@ -138,7 +147,7 @@ class Quote extends AbstractTret
                 $k = substr($this->_text, $okpos);
                 $k = str_replace(self::QUOTE_CRAWSE_OPEN, self::QUOTE_FIRS_OPEN, $k);
                 $k = str_replace(self::QUOTE_CRAWSE_CLOSE, self::QUOTE_FIRS_CLOSE, $k);
-                $this->_text = substr($this->_text, 0, $okpos) . $k;
+                $this->_text = substr($this->_text, 0, $okpos).$k;
             }
         }
     }

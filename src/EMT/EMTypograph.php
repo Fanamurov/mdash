@@ -1,20 +1,19 @@
 <?php
 /**
-* Evgeny Muravjev Typograph, http://mdash.ru
-* Version: 3.0 Gold Master
-* Release Date: September 28, 2013
-* Authors: Evgeny Muravjev & Alexander Drutsa
-*/
+ * Evgeny Muravjev Typograph, http://mdash.ru
+ * Version: 3.0 Gold Master
+ * Release Date: September 28, 2013
+ * Authors: Evgeny Muravjev & Alexander Drutsa.
+ */
 
 namespace EMT;
 
 /**
- * Class EMTypograph
- * @package EMT
+ * Class EMTypograph.
  */
 class EMTypograph extends AbstractTypograph
 {
-    public $trets = array(
+    public $trets = [
         '\EMT\Tret\Quote',
         '\EMT\Tret\Dash',
         '\EMT\Tret\Symbol',
@@ -26,10 +25,10 @@ class EMTypograph extends AbstractTypograph
         '\EMT\Tret\Date',
         '\EMT\Tret\OptAlign',
         '\EMT\Tret\Etc',
-        '\EMT\Tret\Text'
-    );
+        '\EMT\Tret\Text',
+    ];
 
-    protected $group_list  = array(
+    protected $group_list = [
         'Quote'     => true,
         'Dash'      => true,
         'Nobr'      => true,
@@ -42,11 +41,11 @@ class EMTypograph extends AbstractTypograph
         'OptAlign'  => true,
         'Text'      => true,
         'Etc'       => true,
-    );
-    protected $all_options = array(
+    ];
+    protected $all_options = [
 
-        'Quote.quotes' => array( 'description' => 'Расстановка «кавычек-елочек» первого уровня', 'selector' => "Quote.*quote" ),
-        'Quote.quotation' => array( 'description' => 'Внутренние кавычки-лапки', 'selector' => "Quote", 'setting' => 'no_bdquotes', 'reversed' => true ),
+        'Quote.quotes' => ['description' => 'Расстановка «кавычек-елочек» первого уровня', 'selector' => 'Quote.*quote'],
+        'Quote.quotation' => ['description' => 'Внутренние кавычки-лапки', 'selector' => 'Quote', 'setting' => 'no_bdquotes', 'reversed' => true],
 
         'Dash.to_libo_nibud' => 'direct',
         'Dash.iz_za_pod' => 'direct',
@@ -60,7 +59,7 @@ class EMTypograph extends AbstractTypograph
         'Nobr.nbsp_celcius' => 'direct',
         'Nobr.hyphen_nowrap_in_small_words' => 'direct',
         'Nobr.hyphen_nowrap' => 'direct',
-        'Nobr.nowrap' => array('description' => 'Nobr (по умолчанию) & nowrap', 'disabled' => true, 'selector' => '*', 'setting' => 'nowrap' ),
+        'Nobr.nowrap' => ['description' => 'Nobr (по умолчанию) & nowrap', 'disabled' => true, 'selector' => '*', 'setting' => 'nowrap'],
 
         'Symbol.tm_replace'     => 'direct',
         'Symbol.r_sign_replace' => 'direct',
@@ -68,7 +67,7 @@ class EMTypograph extends AbstractTypograph
         'Symbol.apostrophe' => 'direct',
         'Symbol.degree_f' => 'direct',
         'Symbol.arrows_symbols' => 'direct',
-        'Symbol.no_inches' => array( 'description' => 'Расстановка дюйма после числа', 'selector' => "Quote", 'setting' => 'no_inches', 'reversed' => true ),
+        'Symbol.no_inches' => ['description' => 'Расстановка дюйма после числа', 'selector' => 'Quote', 'setting' => 'no_inches', 'reversed' => true],
 
         'Punctmark.auto_comma' => 'direct',
         'Punctmark.hellip' => 'direct',
@@ -93,10 +92,10 @@ class EMTypograph extends AbstractTypograph
 
         'Space.many_spaces_to_one' => 'direct',
         'Space.clear_percent' => 'direct',
-        'Space.clear_before_after_punct' => array( 'description' => 'Удаление пробелов перед и после знаков препинания в предложении', 'selector' => 'Space.remove_space_before_punctuationmarks'),
-        'Space.autospace_after' => array( 'description' => 'Расстановка пробелов после знаков препинания', 'selector' => 'Space.autospace_after_*'),
-        'Space.bracket_fix' => array( 'description' => 'Удаление пробелов внутри скобок, а также расстановка пробела перед скобками',
-                'selector' => array('Space.nbsp_before_open_quote', 'Punctmark.fix_brackets')),
+        'Space.clear_before_after_punct' => ['description' => 'Удаление пробелов перед и после знаков препинания в предложении', 'selector' => 'Space.remove_space_before_punctuationmarks'],
+        'Space.autospace_after' => ['description' => 'Расстановка пробелов после знаков препинания', 'selector' => 'Space.autospace_after_*'],
+        'Space.bracket_fix' => ['description' => 'Удаление пробелов внутри скобок, а также расстановка пробела перед скобками',
+                'selector' => ['Space.nbsp_before_open_quote', 'Punctmark.fix_brackets'], ],
 
         'Abbr.nbsp_money_abbr' => 'direct',
         'Abbr.nobr_vtch_itd_itp' => 'direct',
@@ -110,11 +109,11 @@ class EMTypograph extends AbstractTypograph
         'Abbr.nobr_before_unit_volt' => 'direct',
         'Abbr.nbsp_before_unit' => 'direct',
 
-        'OptAlign.all' => array( 'description' => 'Inline стили или CSS', 'hide' => true, 'selector' => 'OptAlign.*'),
+        'OptAlign.all' => ['description' => 'Inline стили или CSS', 'hide' => true, 'selector' => 'OptAlign.*'],
         'OptAlign.oa_oquote' => 'direct',
         'OptAlign.oa_obracket_coma' => 'direct',
         'OptAlign.oa_oquote_extra' => 'direct',
-        'OptAlign.layout' => array( 'description' => 'Inline стили или CSS' ),
+        'OptAlign.layout' => ['description' => 'Inline стили или CSS'],
 
         'Text.paragraphs' => 'direct',
         'Text.auto_links' => 'direct',
@@ -123,12 +122,12 @@ class EMTypograph extends AbstractTypograph
         'Text.no_repeat_words' => 'direct',
 
         //'Etc.no_nbsp_in_nobr' => 'direct',
-        'Etc.unicode_convert' => array('description' => 'Преобразовывать html-сущности в юникод', 'selector' => '*', 'setting' => 'dounicode' , 'disabled' => true),
+        'Etc.unicode_convert' => ['description' => 'Преобразовывать html-сущности в юникод', 'selector' => '*', 'setting' => 'dounicode', 'disabled' => true],
 
-    );
+    ];
 
     /**
-     * Получить список имеющихся опций
+     * Получить список имеющихся опций.
      *
      * @return array
      *               all    - полный список
@@ -136,24 +135,32 @@ class EMTypograph extends AbstractTypograph
      */
     public function get_options_list()
     {
-        $arr['all'] = array();
-        $bygroup = array();
+        $arr['all'] = [];
+        $bygroup = [];
         foreach ($this->all_options as $opt => $op) {
             $arr['all'][$opt] = $this->get_option_info($opt);
-            $x = explode(".",$opt);
+            $x = explode('.', $opt);
             $bygroup[$x[0]][] = $opt;
         }
-        $arr['group'] = array();
+        $arr['group'] = [];
         foreach ($this->group_list as $group => $ginfo) {
             if ($ginfo === true) {
                 $tret = $this->get_tret($group);
-                if($tret) $info['title'] = $tret->title; else $info['title'] = "Не определено";
+                if ($tret) {
+                    $info['title'] = $tret->title;
+                } else {
+                    $info['title'] = 'Не определено';
+                }
             } else {
                 $info = $ginfo;
             }
             $info['name'] = $group;
-            $info['options'] = array();
-            if(is_array($bygroup[$group])) foreach($bygroup[$group] as $opt) $info['options'][] = $opt;
+            $info['options'] = [];
+            if (is_array($bygroup[$group])) {
+                foreach ($bygroup[$group] as $opt) {
+                    $info['options'][] = $opt;
+                }
+            }
             $arr['group'][] = $info;
         }
 
@@ -161,14 +168,14 @@ class EMTypograph extends AbstractTypograph
     }
 
     /**
-     * Получить информацию о настройке
+     * Получить информацию о настройке.
      *
      * @param  string      $key
      * @return array|false
      */
     protected function get_option_info($key)
     {
-        if (!isset($this->all_options[$key])) {
+        if (! isset($this->all_options[$key])) {
             return false;
         }
 
@@ -176,16 +183,16 @@ class EMTypograph extends AbstractTypograph
             return $this->all_options[$key];
         }
 
-        if (($this->all_options[$key] == "direct") || ($this->all_options[$key] == "reverse")) {
-            $pa = explode(".", $key);
+        if (($this->all_options[$key] == 'direct') || ($this->all_options[$key] == 'reverse')) {
+            $pa = explode('.', $key);
             $tret_pattern = $pa[0];
             $tret = $this->get_tret($tret_pattern);
 
-            if (!$tret) {
+            if (! $tret) {
                 return false;
             }
 
-            if (!isset($tret->rules[$pa[1]])) {
+            if (! isset($tret->rules[$pa[1]])) {
                 return false;
             }
             $array = $tret->rules[$pa[1]];
@@ -198,40 +205,45 @@ class EMTypograph extends AbstractTypograph
     }
 
     /**
-     * Установка одной метанастройки
+     * Установка одной метанастройки.
      *
      * @param string $name
      * @param mixed  $value
      */
     public function do_setup($name, $value)
     {
-        if (!isset($this->all_options[$name])) {
+        if (! isset($this->all_options[$name])) {
             return;
         }
 
         // эта настрока связана с правилом ядра
         if (is_string($this->all_options[$name])) {
-            $this->set($name, "active", $value );
+            $this->set($name, 'active', $value);
 
-            return ;
+            return;
         }
         if (is_array($this->all_options[$name])) {
             if (isset($this->all_options[$name]['selector'])) {
-                $settingname = "active";
-                if(isset($this->all_options[$name]['setting'])) $settingname = $this->all_options[$name]['setting'];
+                $settingname = 'active';
+                if (isset($this->all_options[$name]['setting'])) {
+                    $settingname = $this->all_options[$name]['setting'];
+                }
                 $this->set($this->all_options[$name]['selector'], $settingname, $value);
             }
         }
 
-        if ($name == "OptAlign.layout") {
-            if($value == "style") $this->set_tag_layout(Util::LAYOUT_STYLE);
-            if($value == "class") $this->set_tag_layout(Util::LAYOUT_CLASS);
+        if ($name == 'OptAlign.layout') {
+            if ($value == 'style') {
+                $this->set_tag_layout(Util::LAYOUT_STYLE);
+            }
+            if ($value == 'class') {
+                $this->set_tag_layout(Util::LAYOUT_CLASS);
+            }
         }
-
     }
 
     /**
-     * Запустить типограф со стандартными параметрами
+     * Запустить типограф со стандартными параметрами.
      *
      * @param  string $text
      * @param  array  $options
@@ -257,6 +269,7 @@ class EMTypograph extends AbstractTypograph
     public function process($text)
     {
         $this->set_text($text);
+
         return $this->apply();
     }
 }

@@ -1,54 +1,55 @@
 <?php
+
 namespace EMT\Tret;
 
 class Symbol extends AbstractTret
 {
     /**
-     * Базовые параметры тофа
+     * Базовые параметры тофа.
      *
      * @var array
      */
-    public $classes = array(
+    public $classes = [
         'nowrap' => 'word-spacing:nowrap;',
-    );
+    ];
 
-    public $title = "Специальные символы";
-    public $rules = array(
-        'tm_replace' => array(
+    public $title = 'Специальные символы';
+    public $rules = [
+        'tm_replace' => [
             'description' => 'Замена (tm) на символ торговой марки',
             'pattern' => '/([\040\t])?\(tm\)/i',
-            'replacement' => '&trade;'
-        ),
-        'r_sign_replace' => array(
+            'replacement' => '&trade;',
+        ],
+        'r_sign_replace' => [
             'description' => 'Замена (R) на символ зарегистрированной торговой марки',
-            'pattern' => array(
+            'pattern' => [
                 '/(.|^)\(r\)(.|$)/ie',
                 //'/([^\>]|^)\(r\)([^\<]|$)/ie',
                 //'/\>\(r\)\</i',
-            ),
-            'replacement' => array(
+            ],
+            'replacement' => [
                 //'$m[1].$this->tag("&reg;", "sup").$m[2]',
                 '$m[1]."&reg;".$m[2]',
                 //'>&reg;<'
-            ),
-        ),
-        'copy_replace' => array(
+            ],
+        ],
+        'copy_replace' => [
             'description' => 'Замена (c) на символ копирайт',
-            'pattern' => array(
+            'pattern' => [
                 '/\((c|с)\)\s+/iu',
                 '/\((c|с)\)($|\.|,|!|\?)/iu',
-            ),
-            'replacement' => array(
+            ],
+            'replacement' => [
                 '&copy;&nbsp;',
                 '&copy;\2',
-            ),
-        ),
-        'apostrophe' => array(
+            ],
+        ],
+        'apostrophe' => [
             'description' => 'Расстановка правильного апострофа в текстах',
             'pattern' => '/(\s|^|\>|\&rsquo\;)([a-zа-яё]{1,})\'([a-zа-яё]+)/ui',
             'replacement' => '\1\2&rsquo;\3',
-            'cycled' => true
-        ),
+            'cycled' => true,
+        ],
         /*
     'ru_apostrophe' => array(
             'description'	=> 'Расстановка правильного апострофа в русских текстах',
@@ -56,21 +57,21 @@ class Symbol extends AbstractTret
             'replacement' 	=> '\1\2&rsquo;\3'
         ),
         */
-        'degree_f' => array(
+        'degree_f' => [
             'description' => 'Градусы по Фаренгейту',
             'pattern' => '/([0-9]+)F($|\s|\.|\,|\;|\:|\&nbsp\;|\?|\!)/eu',
-            'replacement' => '"".$this->tag($m[1]." &deg;F","span", array("class"=>"nowrap")) .$m[2]'
-        ),
-        'euro_symbol' => array(
+            'replacement' => '"".$this->tag($m[1]." &deg;F","span", array("class"=>"nowrap")) .$m[2]',
+        ],
+        'euro_symbol' => [
             'description' => 'Символ евро',
             'simple_replace' => true,
             'pattern' => '€',
-            'replacement' => '&euro;'
-        ),
-        'arrows_symbols' => array(
+            'replacement' => '&euro;',
+        ],
+        'arrows_symbols' => [
             'description' => 'Замена стрелок вправо-влево на html коды',
-            'pattern' => array('/(\s|\>|\&nbsp\;|^)\-\>($|\s|\&nbsp\;|\<)/', '/(\s|\>|\&nbsp\;|^|;)\<\-(\s|\&nbsp\;|$)/', '/→/u', '/←/u'),
-            'replacement' => array('\1&rarr;\2', '\1&larr;\2', '&rarr;', '&larr;')
-        ),
-    );
+            'pattern' => ['/(\s|\>|\&nbsp\;|^)\-\>($|\s|\&nbsp\;|\<)/', '/(\s|\>|\&nbsp\;|^|;)\<\-(\s|\&nbsp\;|$)/', '/→/u', '/←/u'],
+            'replacement' => ['\1&rarr;\2', '\1&larr;\2', '&rarr;', '&larr;'],
+        ],
+    ];
 }

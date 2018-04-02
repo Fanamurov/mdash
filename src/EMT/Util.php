@@ -10,55 +10,55 @@ class Util
     const INTERNAL_BLOCK_OPEN = '%%%INTBLOCKO235978%%%';
     const INTERNAL_BLOCK_CLOSE = '%%%INTBLOCKC235978%%%';
     /**
-     * Таблица символов
+     * Таблица символов.
      *
      * @var array
      */
-    public static $_charsTable = array(
-        '"' => array('html' => array('&laquo;', '&raquo;', '&ldquo;', '&lsquo;', '&bdquo;', '&ldquo;', '&quot;', '&#171;', '&#187;'),
-            'utf8' => array(0x201E, 0x201C, 0x201F, 0x201D, 0x00AB, 0x00BB)),
-        ' ' => array('html' => array('&nbsp;', '&thinsp;', '&#160;'),
-            'utf8' => array(0x00A0, 0x2002, 0x2003, 0x2008, 0x2009)),
-        '-' => array('html' => array( /*'&mdash;',*/
-            '&ndash;', '&minus;', '&#151;', '&#8212;', '&#8211;'),
-            'utf8' => array(0x002D, /*0x2014,*/
-                0x2010, 0x2012, 0x2013)),
-        '—' => array('html' => array('&mdash;'),
-            'utf8' => array(0x2014)),
-        '==' => array('html' => array('&equiv;'),
-            'utf8' => array(0x2261)),
-        '...' => array('html' => array('&hellip;', '&#0133;'),
-            'utf8' => array(0x2026)),
-        '!=' => array('html' => array('&ne;', '&#8800;'),
-            'utf8' => array(0x2260)),
-        '<=' => array('html' => array('&le;', '&#8804;'),
-            'utf8' => array(0x2264)),
-        '>=' => array('html' => array('&ge;', '&#8805;'),
-            'utf8' => array(0x2265)),
-        '1/2' => array('html' => array('&frac12;', '&#189;'),
-            'utf8' => array(0x00BD)),
-        '1/4' => array('html' => array('&frac14;', '&#188;'),
-            'utf8' => array(0x00BC)),
-        '3/4' => array('html' => array('&frac34;', '&#190;'),
-            'utf8' => array(0x00BE)),
-        '+-' => array('html' => array('&plusmn;', '&#177;'),
-            'utf8' => array(0x00B1)),
-        '&' => array('html' => array('&amp;', '&#38;')),
-        '(tm)' => array('html' => array('&trade;', '&#153;'),
-            'utf8' => array(0x2122)),
+    public static $_charsTable = [
+        '"' => ['html' => ['&laquo;', '&raquo;', '&ldquo;', '&lsquo;', '&bdquo;', '&ldquo;', '&quot;', '&#171;', '&#187;'],
+            'utf8' => [0x201E, 0x201C, 0x201F, 0x201D, 0x00AB, 0x00BB], ],
+        ' ' => ['html' => ['&nbsp;', '&thinsp;', '&#160;'],
+            'utf8' => [0x00A0, 0x2002, 0x2003, 0x2008, 0x2009], ],
+        '-' => ['html' => [/*'&mdash;',*/
+            '&ndash;', '&minus;', '&#151;', '&#8212;', '&#8211;', ],
+            'utf8' => [0x002D, /*0x2014,*/
+                0x2010, 0x2012, 0x2013, ], ],
+        '—' => ['html' => ['&mdash;'],
+            'utf8' => [0x2014], ],
+        '==' => ['html' => ['&equiv;'],
+            'utf8' => [0x2261], ],
+        '...' => ['html' => ['&hellip;', '&#0133;'],
+            'utf8' => [0x2026], ],
+        '!=' => ['html' => ['&ne;', '&#8800;'],
+            'utf8' => [0x2260], ],
+        '<=' => ['html' => ['&le;', '&#8804;'],
+            'utf8' => [0x2264], ],
+        '>=' => ['html' => ['&ge;', '&#8805;'],
+            'utf8' => [0x2265], ],
+        '1/2' => ['html' => ['&frac12;', '&#189;'],
+            'utf8' => [0x00BD], ],
+        '1/4' => ['html' => ['&frac14;', '&#188;'],
+            'utf8' => [0x00BC], ],
+        '3/4' => ['html' => ['&frac34;', '&#190;'],
+            'utf8' => [0x00BE], ],
+        '+-' => ['html' => ['&plusmn;', '&#177;'],
+            'utf8' => [0x00B1], ],
+        '&' => ['html' => ['&amp;', '&#38;']],
+        '(tm)' => ['html' => ['&trade;', '&#153;'],
+            'utf8' => [0x2122], ],
         //'(r)' 	=> array('html' => array('<sup>&reg;</sup>', '&reg;', '&#174;'),
-        '(r)' => array('html' => array('&reg;', '&#174;'),
-            'utf8' => array(0x00AE)),
-        '(c)' => array('html' => array('&copy;', '&#169;'),
-            'utf8' => array(0x00A9)),
-        '§' => array('html' => array('&sect;', '&#167;'),
-            'utf8' => array(0x00A7)),
-        '`' => array('html' => array('&#769;')),
-        '\'' => array('html' => array('&rsquo;', '’')),
-        'x' => array('html' => array('&times;', '&#215;'),
-            'utf8' => array('×') /* какой же у него может быть код? */),
+        '(r)' => ['html' => ['&reg;', '&#174;'],
+            'utf8' => [0x00AE], ],
+        '(c)' => ['html' => ['&copy;', '&#169;'],
+            'utf8' => [0x00A9], ],
+        '§' => ['html' => ['&sect;', '&#167;'],
+            'utf8' => [0x00A7], ],
+        '`' => ['html' => ['&#769;']],
+        '\'' => ['html' => ['&rsquo;', '’']],
+        'x' => ['html' => ['&times;', '&#215;'],
+            'utf8' => ['×'], /* какой же у него может быть код? */],
 
-    );
+    ];
 
     /**
      * Добавление к тегам атрибута 'id', благодаря которому
@@ -70,7 +70,7 @@ class Util
     protected static $_typographSpecificTagId = false;
 
     /**
-     * Костыли для работы с символами UTF-8
+     * Костыли для работы с символами UTF-8.
      *
      * @author    somebody?
      * @param  int $c код символа в кодировке UTF-8 (например, 0x00AB)
@@ -82,23 +82,23 @@ class Util
             return chr($c);
         } elseif ($c <= 0x7FF) {
             return chr(0xC0 | $c >> 6)
-            . chr(0x80 | $c & 0x3F);
+            .chr(0x80 | $c & 0x3F);
         } elseif ($c <= 0xFFFF) {
             return chr(0xE0 | $c >> 12)
-            . chr(0x80 | $c >> 6 & 0x3F)
-            . chr(0x80 | $c & 0x3F);
+            .chr(0x80 | $c >> 6 & 0x3F)
+            .chr(0x80 | $c & 0x3F);
         } elseif ($c <= 0x10FFFF) {
             return chr(0xF0 | $c >> 18)
-            . chr(0x80 | $c >> 12 & 0x3F)
-            . chr(0x80 | $c >> 6 & 0x3F)
-            . chr(0x80 | $c & 0x3F);
+            .chr(0x80 | $c >> 12 & 0x3F)
+            .chr(0x80 | $c >> 6 & 0x3F)
+            .chr(0x80 | $c & 0x3F);
         } else {
             return false;
         }
     }
 
     /**
-     * Удаление кодов HTML из текста
+     * Удаление кодов HTML из текста.
      *
      * <code>
      *  // Remove UTF-8 chars:
@@ -115,12 +115,24 @@ class Util
      */
     public static function clear_special_chars($text, $mode = null)
     {
-        if (is_string($mode)) $mode = array($mode);
-        if (null === $mode) $mode = array('utf8', 'html');
-        if (!is_array($mode)) return false;
-        $moder = array();
-        foreach ($mode as $mod) if (in_array($mod, array('utf8', 'html'))) $moder[] = $mod;
-        if (count($moder) === 0) return false;
+        if (is_string($mode)) {
+            $mode = [$mode];
+        }
+        if (null === $mode) {
+            $mode = ['utf8', 'html'];
+        }
+        if (! is_array($mode)) {
+            return false;
+        }
+        $moder = [];
+        foreach ($mode as $mod) {
+            if (in_array($mod, ['utf8', 'html'])) {
+                $moder[] = $mod;
+            }
+        }
+        if (count($moder) === 0) {
+            return false;
+        }
 
         foreach (self::$_charsTable as $char => $vals) {
             foreach ($mode as $type) {
@@ -158,32 +170,36 @@ class Util
 
         if (null !== $allowableTag) {
             if (is_string($allowableTag)) {
-                $allowableTag = array($allowableTag);
+                $allowableTag = [$allowableTag];
             }
             if (is_array($allowableTag)) {
-                $tags = array();
+                $tags = [];
                 foreach ($allowableTag as $tag) {
-                    if ('<' !== substr($tag, 0, 1) || '>' !== substr($tag, -1, 1)) continue;
-                    if ('/' === substr($tag, 1, 1)) continue;
+                    if ('<' !== substr($tag, 0, 1) || '>' !== substr($tag, -1, 1)) {
+                        continue;
+                    }
+                    if ('/' === substr($tag, 1, 1)) {
+                        continue;
+                    }
                     $tags [] = $tag;
                 }
                 $ignore = implode('', $tags);
             }
         }
-        $text = preg_replace(array('/\<br\s*\/?>/i', '/\<\/p\>\s*\<p\>/'), array('\n', '\n\n'), $text);
+        $text = preg_replace(['/\<br\s*\/?>/i', '/\<\/p\>\s*\<p\>/'], ['\n', '\n\n'], $text);
         $text = strip_tags($text, $ignore);
 
         return $text;
     }
 
     /**
-     * Сохраняем содержимое тегов HTML
+     * Сохраняем содержимое тегов HTML.
      *
      * Тег 'a' кодируется со специальным префиксом для дальнейшей
      * возможности выносить за него кавычки.
      *
      * @param  string $text
-     * @param boolean $way
+     * @param bool $way
      * @return string
      */
     public static function safe_tag_chars($text, $way)
@@ -191,12 +207,12 @@ class Util
         if ($way) {
             $text = preg_replace_callback('/(\<\/?)(.+?)(\>)/s',
                 function ($m) {
-                    return $m[1] . (0 === strpos(trim($m[2]), 'a') ? '%%___' : '') . \EMT\Util::encrypt_tag(trim($m[2])) . $m[3];
+                    return $m[1].(0 === strpos(trim($m[2]), 'a') ? '%%___' : '').\EMT\Util::encrypt_tag(trim($m[2])).$m[3];
                 }, $text);
         } else {
             $text = preg_replace_callback('/(\<\/?)(.+?)(\>)/s',
                 function ($m) {
-                    return $m[1] . (0 === strpos(trim($m[2]), '%%___') ? \EMT\Util::decrypt_tag(substr(trim($m[2]), 4)) : \EMT\Util::decrypt_tag(trim($m[2]))) . $m[3];
+                    return $m[1].(0 === strpos(trim($m[2]), '%%___') ? \EMT\Util::decrypt_tag(substr(trim($m[2]), 4)) : \EMT\Util::decrypt_tag(trim($m[2]))).$m[3];
                 }, $text);
         }
 
@@ -204,14 +220,14 @@ class Util
     }
 
     /**
-     * Декодриует спец блоки
+     * Декодриует спец блоки.
      *
      * @param  string $text
      * @return string
      */
     public static function decode_internal_blocks($text)
     {
-        $text = preg_replace_callback('/' . \EMT\Util::INTERNAL_BLOCK_OPEN . '([a-zA-Z0-9\/=]+?)' . \EMT\Util::INTERNAL_BLOCK_CLOSE . '/s',
+        $text = preg_replace_callback('/'.\EMT\Util::INTERNAL_BLOCK_OPEN.'([a-zA-Z0-9\/=]+?)'.\EMT\Util::INTERNAL_BLOCK_CLOSE.'/s',
             function ($m) {
                 return \EMT\Util::decrypt_tag($m[1]);
             }, $text);
@@ -220,14 +236,14 @@ class Util
     }
 
     /**
-     * Кодирует спец блок
+     * Кодирует спец блок.
      *
      * @param  string $text
      * @return string
      */
     public static function iblock($text)
     {
-        return \EMT\Util::INTERNAL_BLOCK_OPEN . \EMT\Util::encrypt_tag($text) . \EMT\Util::INTERNAL_BLOCK_CLOSE;
+        return \EMT\Util::INTERNAL_BLOCK_OPEN.\EMT\Util::encrypt_tag($text).\EMT\Util::INTERNAL_BLOCK_CLOSE;
     }
 
     /**
@@ -238,24 +254,25 @@ class Util
      * @param  array $attribute список атрибутов, где ключ - имя атрибута, а значение - само значение данного атрибута
      * @return string
      */
-    public static function build_safe_tag($content, $tag = 'span', $attribute = array(), $layout = \EMT\Util::LAYOUT_STYLE)
+    public static function build_safe_tag($content, $tag = 'span', $attribute = [], $layout = \EMT\Util::LAYOUT_STYLE)
     {
         $htmlTag = $tag;
 
         if (self::$_typographSpecificTagId) {
-            if (!isset($attribute['id'])) {
-                $attribute['id'] = 'emt-2' . mt_rand(1000, 9999);
+            if (! isset($attribute['id'])) {
+                $attribute['id'] = 'emt-2'.mt_rand(1000, 9999);
             }
         }
 
         $classname = '';
         if (count($attribute)) {
-
             if ($layout & self::LAYOUT_STYLE) {
                 if (isset($attribute['__style']) && $attribute['__style']) {
                     if (isset($attribute['style']) && $attribute['style']) {
                         $st = trim($attribute['style']);
-                        if (mb_substr($st, -1) != ';') $st .= ';';
+                        if (mb_substr($st, -1) != ';') {
+                            $st .= ';';
+                        }
                         $st .= $attribute['__style'];
                         $attribute['style'] = $st;
                     } else {
@@ -263,40 +280,40 @@ class Util
                     }
                     unset($attribute['__style']);
                 }
-
             }
             foreach ($attribute as $attr => $value) {
-                if ($attr == "__style") continue;
-                if ($attr == "class") {
+                if ($attr == '__style') {
+                    continue;
+                }
+                if ($attr == 'class') {
                     $classname = "$value";
                     continue;
                 }
                 $htmlTag .= " $attr=\"$value\"";
             }
-
         }
 
         if (($layout & self::LAYOUT_CLASS) && $classname) {
             $htmlTag .= " class=\"$classname\"";
         }
 
-        return "<" . self::encrypt_tag($htmlTag) . ">$content</" . self::encrypt_tag($tag) . ">";
+        return '<'.self::encrypt_tag($htmlTag).">$content</".self::encrypt_tag($tag).'>';
     }
 
     /**
      * Метод, осуществляющий кодирование (сохранение) информации
-     * с целью невозможности типографировать ее
+     * с целью невозможности типографировать ее.
      *
      * @param  string $text
      * @return string
      */
     public static function encrypt_tag($text)
     {
-        return base64_encode($text) . '=';
+        return base64_encode($text).'=';
     }
 
     /**
-     * Метод, осуществляющий декодирование информации
+     * Метод, осуществляющий декодирование информации.
      *
      * @param  string $text
      * @return string
@@ -316,7 +333,9 @@ class Util
             $w = false;
             foreach ($needle as $n) {
                 $p = strpos($haystack, $n, $offset);
-                if ($p === false) continue;
+                if ($p === false) {
+                    continue;
+                }
                 if ($m === false) {
                     $m = $p;
                     $w = $n;
@@ -327,9 +346,11 @@ class Util
                     $w = $n;
                 }
             }
-            if ($m === false) return false;
+            if ($m === false) {
+                return false;
+            }
 
-            return array('pos' => $m, 'str' => $w);
+            return ['pos' => $m, 'str' => $w];
         }
 
         return strpos($haystack, $needle, $offset);
@@ -337,41 +358,45 @@ class Util
 
     public static function _process_selector_pattern(&$pattern)
     {
-        if ($pattern === false) return;
+        if ($pattern === false) {
+            return;
+        }
         $pattern = preg_quote($pattern, '/');
-        $pattern = str_replace("\\*", "[a-z0-9_\-]*", $pattern);
-        $pattern = "/" . $pattern . "/i";
+        $pattern = str_replace('\\*', "[a-z0-9_\-]*", $pattern);
+        $pattern = '/'.$pattern.'/i';
     }
 
     public static function _test_pattern($pattern, $text)
     {
-        if ($pattern === false) return true;
+        if ($pattern === false) {
+            return true;
+        }
 
         return preg_match($pattern, $text);
     }
 
     public static function strtolower($string)
     {
-        $convert_to = array(
-            "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u",
-            "v", "w", "x", "y", "z", "à", "á", "â", "ã", "ä", "å", "æ", "ç", "è", "é", "ê", "ë", "ì", "í", "î", "ï",
-            "ð", "ñ", "ò", "ó", "ô", "õ", "ö", "ø", "ù", "ú", "û", "ü", "ý", "а", "б", "в", "г", "д", "е", "ё", "ж",
-            "з", "и", "й", "к", "л", "м", "н", "о", "п", "р", "с", "т", "у", "ф", "х", "ц", "ч", "ш", "щ", "ъ", "ы",
-            "ь", "э", "ю", "я"
-        );
-        $convert_from = array(
-            "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U",
-            "V", "W", "X", "Y", "Z", "À", "Á", "Â", "Ã", "Ä", "Å", "Æ", "Ç", "È", "É", "Ê", "Ë", "Ì", "Í", "Î", "Ï",
-            "Ð", "Ñ", "Ò", "Ó", "Ô", "Õ", "Ö", "Ø", "Ù", "Ú", "Û", "Ü", "Ý", "А", "Б", "В", "Г", "Д", "Е", "Ё", "Ж",
-            "З", "И", "Й", "К", "Л", "М", "Н", "О", "П", "Р", "С", "Т", "У", "Ф", "Х", "Ц", "Ч", "Ш", "Щ", "Ъ", "Ъ",
-            "Ь", "Э", "Ю", "Я"
-        );
+        $convert_to = [
+            'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
+            'v', 'w', 'x', 'y', 'z', 'à', 'á', 'â', 'ã', 'ä', 'å', 'æ', 'ç', 'è', 'é', 'ê', 'ë', 'ì', 'í', 'î', 'ï',
+            'ð', 'ñ', 'ò', 'ó', 'ô', 'õ', 'ö', 'ø', 'ù', 'ú', 'û', 'ü', 'ý', 'а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж',
+            'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы',
+            'ь', 'э', 'ю', 'я',
+        ];
+        $convert_from = [
+            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U',
+            'V', 'W', 'X', 'Y', 'Z', 'À', 'Á', 'Â', 'Ã', 'Ä', 'Å', 'Æ', 'Ç', 'È', 'É', 'Ê', 'Ë', 'Ì', 'Í', 'Î', 'Ï',
+            'Ð', 'Ñ', 'Ò', 'Ó', 'Ô', 'Õ', 'Ö', 'Ø', 'Ù', 'Ú', 'Û', 'Ü', 'Ý', 'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж',
+            'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ъ',
+            'Ь', 'Э', 'Ю', 'Я',
+        ];
 
         return str_replace($convert_from, $convert_to, $string);
     }
 
     // взято с http://www.w3.org/TR/html4/sgml/entities.html
-    protected static $html4_char_ents = array(
+    protected static $html4_char_ents = [
         'nbsp' => 160,
         'iexcl' => 161,
         'cent' => 162,
@@ -624,23 +649,25 @@ class Util
         'lsaquo' => 8249,
         'rsaquo' => 8250,
         'euro' => 8364,
-    );
+    ];
 
     /**
-     * Вернуть уникод символ по html entinty
+     * Вернуть уникод символ по html entinty.
      *
      * @param  string $entity
      * @return string
      */
     public static function html_char_entity_to_unicode($entity)
     {
-        if (isset(self::$html4_char_ents[$entity])) return self::_getUnicodeChar(self::$html4_char_ents[$entity]);
+        if (isset(self::$html4_char_ents[$entity])) {
+            return self::_getUnicodeChar(self::$html4_char_ents[$entity]);
+        }
 
         return false;
     }
 
     /**
-     * Сконвериторвать все html entity в соответсвующие юникод символы
+     * Сконвериторвать все html entity в соответсвующие юникод символы.
      *
      * @param string $text
      */
@@ -648,7 +675,7 @@ class Util
     {
         $text = preg_replace_callback("/\&#([0-9]+)\;/",
             function ($m) {
-                return \EMT\Util::_getUnicodeChar((int)$m[1]);
+                return \EMT\Util::_getUnicodeChar((int) $m[1]);
             }, $text);
         $text = preg_replace_callback("/\&#x([0-9A-F]+)\;/",
             function ($m) {
@@ -656,7 +683,9 @@ class Util
             }, $text);
         $text = preg_replace_callback("/\&([a-zA-Z0-9]+)\;/",
             function ($m) {
-                $r = \EMT\Util::html_char_entity_to_unicode($m[1]); return $r ? $r : $m[0];
+                $r = \EMT\Util::html_char_entity_to_unicode($m[1]);
+
+                return $r ? $r : $m[0];
             }, $text);
     }
 
@@ -675,8 +704,10 @@ class Util
             if ($found) {
                 return $last_pos - 1;
             }
+
             return false;
         }
+
         return false;
     }
 
@@ -684,5 +715,4 @@ class Util
     {
         return $cond ? $true : $false;
     }
-
 }
